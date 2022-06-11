@@ -1,25 +1,25 @@
 // Créer la logique de compte à rebours
-const choice = document.querySelector("input[type=number]");
-let totalSeconds = 0;
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  showCountdown();
-  console.log(totalSeconds + "secondes");
-});
-
-// choice.value = 5 minutes
-
-// Créer un événement à la validation du form pour lancer le compte à rebours
+let totalSeconds;
 
 const showCountdown = () => {
-  let minutes = Math.floor(totalSeconds / 60);
-  let seconds = 0;
-  // let seconds.toLocaleString(undefined, {
-  //   minimumIntegerDigits: 2,
-  // });
-  totalSeconds = choice.value * 60;
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+
+  seconds.toLocaleString(undefined, {
+    minimumIntegerDigits: 2,
+  });
 
   countdownDisplay.innerText = `${minutes} : ${seconds}`;
+  console.log(minutes, seconds);
 };
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (isNaN(choice.value)) {
+    alert('Entrez un chiffre');
+  } else {
+    totalSeconds = choice.value * 60;
+    choice.value = '';
+    setInterval(showCountdown, 1000);
+  }
+});
