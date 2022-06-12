@@ -9,17 +9,12 @@ const showCountdown = () => {
     minimumIntegerDigits: 2,
   });
 
-  countdownDisplay.innerText = `${minutes} : ${seconds}`;
+  countdownDisplay;
   console.log(minutes, seconds);
 };
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  if (isNaN(choice.value)) {
-    alert('Entrez un chiffre');
-  } else {
-    totalSeconds = choice.value * 60;
-    choice.value = '';
-    setInterval(showCountdown, 1000);
-  }
+
+  showCountdown();
 });
